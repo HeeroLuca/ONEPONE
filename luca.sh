@@ -16,9 +16,9 @@ DTBIMAGE="boot.img-dtb"
 DEFCONFIG="luca_defconfig"
 
 # Kernel Details
-BASE_AK_VER="heeroluca"
-VER="build_3"
-AK_VER="$BASE_AK_VER$VER"
+BASE_HL_VER="heeroluca"
+VER="build_CM11S"
+HL_VER="$BASE_HL_VER$VER"
 
 # Paths
 KERNEL_DIR="${HOME}/SOURCE/cm11s"
@@ -29,12 +29,6 @@ ZIP_MOVE="${HOME}/Release"
 ZIMAGE_DIR="${HOME}/SOURCE/cm11s/arch/arm/boot"
 
 # Functions
-
-function play {
-		cvlc '/media/heeroluca/Dati/download/Eminem/1996 - Infinite/Infinite.mp3' '/media/heeroluca/Dati/download/Eminem/1996 - Infinite/Maxine.mp3' '/media/heeroluca/Dati/download/Eminem/1996 - Infinite/Tonite.mp3'
-
-}
-	
 
 function CROSSCOMPILER {
 
@@ -73,8 +67,8 @@ function make_dtb {
 
 function make_zip {
 		cd $REPACK_DIR
-		zip -r9 `echo $AK_VER`.zip * -x "README"
-		mv  `echo $AK_VER`.zip $ZIP_MOVE
+		zip -r9 `echo $HL_VER`.zip * -x "README"
+		mv  `echo $HL_VER`.zip $ZIP_MOVE
 		cd $KERNEL_DIR
 }
 
@@ -95,11 +89,11 @@ echo "---------------"
 echo "Kernel Version:"
 echo "---------------"
 
-echo -e "${red}"; echo -e "${blink_red}"; echo "$AK_VER"; echo -e "${restore}";
+echo -e "${red}"; echo -e "${blink_red}"; echo "$LH_VER"; echo -e "${restore}";
 
 echo -e "${green}"
 echo "-----------------"
-echo "Making AK Kernel:"
+echo "Making HL Kernel:"
 echo "-----------------"
 echo -e "${restore}"
 
@@ -129,7 +123,6 @@ while read -p "Do you want to build kernel (y/n)? " dchoice
 do
 case "$dchoice" in
 	y|Y)
-		play
 		CROSSCOMPILER
 		make_kernel
 		make_dtb
